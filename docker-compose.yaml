@@ -22,6 +22,12 @@ services:
     depends_on:
       - "db_server"
     image: "miladkhodabandehloo/go-web"
+    environment:
+      DB_HOST: db_server
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_NAME: app
+      DB_PASSWORD: my-secret
 
   nginx:
     build:

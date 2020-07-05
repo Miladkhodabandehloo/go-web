@@ -17,7 +17,10 @@ func init() {
 	log = logrus.New()
 	log.SetFormatter(&logrus.JSONFormatter{})
 	log.SetOutput(os.Stdout)
-	db, err := gorm.Open("postgres", "host=db_server port=5432 user=postgres dbname=app password=my-secret sslmode=disable")
+	db, err := gorm.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable",
+		os.Getenv("DB_HOST"), os.Getenv("DB_PORT"), os.Getenv("DB_USER"), os.Getenv("DB_NAME"),
+		os.Getenv("DB_PASSWORD")))
+
 	if err != nil{
 		log.Fatalln(err)
 	}
