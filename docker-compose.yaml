@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
 
@@ -7,9 +7,9 @@ services:
     restart: always
     ports:
     - "5432:5432"
-    environment:
-      POSTGRES_PASSWORD: "my-secret"
-      POSTGRES_DB: "app"
+    env_file:
+      - my.env
+
 
   web:
     build: .
@@ -22,18 +22,17 @@ services:
     depends_on:
       - "db_server"
     image: "miladkhodabandehloo/go-web"
-    environment:
-      DB_HOST: db_server
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_NAME: app
-      DB_PASSWORD: my-secret
+    env_file:
+      - my.env
+
 
   nginx:
     build:
       context: .
       dockerfile: nginxDockerfile
     image: "miladkhodabandehloo/go-nginx"
+    env_file:
+      - my.env
 
     ports:
     - "80:80"
