@@ -5,6 +5,7 @@ services:
 
 
 before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker-compose build
 
 script:
@@ -12,5 +13,4 @@ script:
   - docker-compose run --rm web go test
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker-compose push

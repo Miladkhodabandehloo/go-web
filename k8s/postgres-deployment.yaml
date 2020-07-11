@@ -17,10 +17,18 @@ spec:
     spec:
       volumes:
         - name: postgres-sotrage
-          persistentVolumeCliam:
-            cliamName: database-persistent-volume-claim
+          persistentVolumeClaim:
+            claimName: database-persistent-volume-claim
       containers:
         - name:  db-server
           image:  postgres
           ports:
             - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-password
+                  key: DB_PASSWORD
+            - name: POSTGRES_DB
+              value: app

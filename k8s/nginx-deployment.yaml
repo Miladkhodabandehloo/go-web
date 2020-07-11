@@ -20,3 +20,6 @@ spec:
           image: miladkhodabandehloo/go-nginx
           ports:
             - containerPort: 80
+          env:
+            - name: NGINX_HOST
+              value: web-cluster-ip-service
