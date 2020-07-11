@@ -24,6 +24,9 @@ services:
     image: "miladkhodabandehloo/go-web"
     env_file:
       - my.env
+    version_tag:
+      extends: build
+      image: "miladkhodabandehloo/go-web:{$GIT_SHA}"
 
 
   nginx:
@@ -33,6 +36,9 @@ services:
     image: "miladkhodabandehloo/go-nginx"
     env_file:
       - my.env
+    version_tag:
+      extends: build
+      image: "miladkhodabandehloo/go-nginx:{GIT_SHA}"
 
     ports:
     - "80:80"
