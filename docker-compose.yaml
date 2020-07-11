@@ -21,7 +21,7 @@ services:
     - "8000"
     depends_on:
       - "db_server"
-    image: "miladkhodabandehloo/go-web:${GIT_SHA:-latest}"
+    image: "miladkhodabandehloo/go-web:${GIT_SHA}"
     env_file:
       - my.env
 
