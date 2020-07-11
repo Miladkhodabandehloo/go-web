@@ -21,3 +21,5 @@ script:
 
 after_success:
   - docker-compose push
+  - docker push miladkhodabandehloo/go-web:$SHA
+  - docker push miladkhodabandehloo/go-nginx:$SHA
