@@ -11,6 +11,9 @@ env:
 before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker-compose build
+  - docker tag miladkhodabandehloo/go-web:latest    miladkhodabandehloo/go-web:$SHA
+  - docker tag miladkhodabandehloo/go-nginx:latest    miladkhodabandehloo/go-nginx:$SHA
+
 
 script:
   - echo "running tests"
